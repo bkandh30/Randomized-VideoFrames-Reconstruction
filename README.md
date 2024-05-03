@@ -28,6 +28,7 @@ Clustering is a method where each frame is initially treated as a separate clust
 merges these clusters based on similarity measures, often derived from a predefined cost matrix. This approach
 organizes the video frames into a hierarchy, from individual frames to increasingly larger clusters, until a single,
 sorted sequence is achieved.
+
 On close observation, we can map our original problem of sorting a video, to a variant of the Travelling Salesman
 Problem. Using the Travelling Salesman Problem (TSP) approach to sort frames in video sorting involves modeling
 the sequence of frames as a fully connected graph. Each frame represents a node, and the edges between them are
