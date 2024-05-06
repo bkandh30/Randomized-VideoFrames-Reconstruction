@@ -17,19 +17,30 @@ Our proposed solution utilizes preprocessing, feature matching and sorting algor
 
 In the initial preprocessing stage, we employ downsampling and greyscaling on the original video and streamlining the subsequent operations. Preprocessing allows us to remove the small changes in the video and also reduces computational load. The video is then shuffled and features are extracted using two feature detectors: ORB and SIFT Feature detectors. We compared and evaluated these feature detectors: SIFT for its capacity to maintain consistency in detecting key points and ORB for its efficiency.
 
+
+![](photos/sift%20feature.png)  ![](photos/orb%20feature.png)
+
+![](photos/orb%20feature%20descriptor.png)
+
 After the features of each frame have been extracted, they are sent to a distance estimation algorithm that calculates
 various distance metrics between the matched features such as: L2 norm and L1 norm.
+
+![](photos/l1norm%20vs%20l2norm.png)
+
 Later a cost matrix is generated for each permutation of the frame sequence as there is a “cost” for transforming a
 given image to another image. Similar image frames have a lower cost whereas different image frames have a higher
 cost. We generated the cost matrix with the number of matches, L1 and L2 distance between matched pairs.
 After generating the cost matrix, we proceed with different sorting algorithms. We evaluated three sorting
 algorithms: Growing approach, Hierarchical clustering and Travelling Salesman solution. In the Growing approach,
 we start with a random frame and find the nearest neighbor frame based on cost. This frame is appended to the
-sequence depending on its proximity to the start or end. The process repeats until all frames are sorted. Hierarchical
-Clustering is a method where each frame is initially treated as a separate cluster. The algorithm then progressively
+sequence depending on its proximity to the start or end. The process repeats until all frames are sorted.
+
+Hierarchical Clustering is a method where each frame is initially treated as a separate cluster. The algorithm then progressively
 merges these clusters based on similarity measures, often derived from a predefined cost matrix. This approach
 organizes the video frames into a hierarchy, from individual frames to increasingly larger clusters, until a single,
 sorted sequence is achieved.
+
+![](photos/hierarchical%20clustering.png)
 
 On close observation, we can map our original problem of sorting a video, to a variant of the Travelling Salesman
 Problem. Using the Travelling Salesman Problem (TSP) approach to sort frames in video sorting involves modeling
@@ -40,10 +51,16 @@ employing a greedy algorithm, efficiently organizes frames in a manner that mini
 thus ensuring a smooth and logical progression of the video content. Unlike the traditional TSP, this variant does not
 require returning to the starting frame, making it more suitable for linear video sequences.
 
+![](photos/tsp%20table.png)  ![](photos/tsp%20demo.png)
+
 ## Performance Evaluation
 To measure the performance of the algorithm, the paper recommends a Logarithmic Error Function as below:
 
+![](photos/log%20error%20function.png)
+
 We propose a new Sequential error function. This error function rewards longer continuous sequences within the sorted array. It is less sensitive to the overall order and more to the length of sequentially ordered sub-sequences. This approach is particularly useful when the relative ordering of the elements is more important than their absolute positioning.
+
+![](photos/performance%20evaluation.png)
 
 ## Observation
 1. After shuffling, we're unaware about the flow of time.
