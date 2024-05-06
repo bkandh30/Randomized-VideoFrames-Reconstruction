@@ -13,6 +13,8 @@ Python, OpenCV, Numpy, Matplotlib, Random, and Scipy.
 ## Proposed Solution
 Our proposed solution utilizes preprocessing, feature matching and sorting algorithms.
 
+![](photos/video reconstruction.png)
+
 In the initial preprocessing stage, we employ downsampling and greyscaling on the original video and streamlining the subsequent operations. Preprocessing allows us to remove the small changes in the video and also reduces computational load. The video is then shuffled and features are extracted using two feature detectors: ORB and SIFT Feature detectors. We compared and evaluated these feature detectors: SIFT for its capacity to maintain consistency in detecting key points and ORB for its efficiency.
 
 After the features of each frame have been extracted, they are sent to a distance estimation algorithm that calculates
